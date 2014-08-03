@@ -1,0 +1,25 @@
+* {
+	color: #000 !important;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+body {
+	color: black;
+	font-size: 9px;
+	font-family: tahoma, arial, verdana, sans-serif
+}
+
+.page-separator {
+	page-break-after: always;
+}
+
+.app .print-table {
+	width: 100%
+}
+
+.app .print-table td {
+	padding: 1px 3px;
+}

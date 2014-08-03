@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataMappings>
+	<!-- 
+	<Constant name="XmlToPojo.Template.engine.objectFactory" value="new" />
+	<Constant name="XmlToPojo.Template.engine.className" value="eap.comps.dataformat.factory.object.template.digester.DigesterTemplateEngine" />
+	 -->
+	 
+	<Constant name="XmlToPojo.Template.engine.objectFactory" value="spring" />
+	<Constant name="XmlToPojo.Template.engine.className" value="eap_comps_datamapping_oxmTemplateEngine" />
+	
+	<Constant name="XmlToPojo.Template.templateLoaderPath" value="conf/template" />
+	<Constant name="XmlToPojo.Template.encoding" value="UTF-8" />
+</DataMappings>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="DataMappings">
+		<object-create-rule classname="eap.comps.datamapping.definition.DataMappingsDefinition" />
+		<set-properties-rule />
+		<pattern value="Import">
+			<object-create-rule classname="eap.comps.datamapping.definition.ImportDefinition" />
+			<set-properties-rule />
+			<set-next-rule methodname="addImport" />
+		</pattern>
+		<pattern value="Constant">
+			<object-create-rule classname="eap.comps.datamapping.definition.ConstantDefinition" />
+			<set-properties-rule />
+			<set-next-rule methodname="addConstant"/>
+		</pattern>
+		<pattern value="Handlers/Handler">
+			<object-create-rule classname="eap.comps.datamapping.definition.HandlerDefinition" />
+			<set-properties-rule />
+			<set-next-rule methodname="addHandler" />
+		</pattern>
+		<pattern value="Renderers/Renderer">
+			<object-create-rule classname="eap.comps.datamapping.definition.RendererDefinition" />
+			<set-properties-rule />
+			<set-next-rule methodname="addRenderer" />
+		</pattern>
+		<pattern value="Validators/Validator">
+			<object-create-rule classname="eap.comps.datamapping.definition.ValidatorDefinition" />
+			<set-properties-rule />
+			<set-next-rule methodname="addValidator" />
+		</pattern>
+		<pattern value="TextFieldSet">
+			<object-create-rule classname="eap.comps.datamapping.definition.TextFieldSetDefinition" />
+			<set-properties-rule />
+			<include path="eap/comps/datamapping/definition/rule/TextFieldRule.xml"/>
+			<include path="eap/comps/datamapping/definition/rule/TextFieldGroupRule.xml" />
+			<set-next-rule methodname="addDataFieldSet" />
+		</pattern>
+		<pattern value="CellSet">
+			<object-create-rule classname="eap.comps.datamapping.definition.CellFieldSetDefinition" />
+			<set-properties-rule />
+			<include path="eap/comps/datamapping/definition/rule/CellFieldRule.xml"/>
+			<include path="eap/comps/datamapping/definition/rule/CellFieldGroupRule.xml" />
+			<set-next-rule methodname="addDataFieldSet" />
+		</pattern>
+		<pattern value="DataMapping">
+			<object-create-rule classname="eap.comps.datamapping.definition.DataMappingDefinition" />	
+			<set-properties-rule />
+			<pattern value="PojoToText">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.PojoToTextParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/RepeatRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="TextToPojo">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.TextToPojoParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/RepeatRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="PojoToTemplate">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.PojoToTemplateParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/TemplateRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="XmlToPojo">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.XmlToPojoParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/TemplateRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="ExcelToPojo">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.ExcelToPojoParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/SheetRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="PojoToExcel">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.PojoToExcelParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/SheetRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="PojoToPdf">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.PojoToPdfParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/RendererRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/HandlerRule.xml"/>
+				<include path="eap/comps/datamapping/definition/rule/SectionRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="PojoToJson">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.PojoToJsonParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<pattern value="JsonToPojo">
+				<object-create-rule classname="eap.comps.datamapping.definition.parser.JsonToPojoParserDefinition" />
+				<set-properties-rule />
+				<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+				<set-next-rule methodname="setParser" />
+			</pattern>
+			<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+			<include path="eap/comps/datamapping/definition/rule/HandlerRule.xml"/>
+			<set-next-rule methodname="addDataMapping" />
+		</pattern>
+	</pattern>
+</digester-rules>

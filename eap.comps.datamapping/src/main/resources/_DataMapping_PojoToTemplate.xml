@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataMappings>
+	<Constant name="PojoToTemplate.Template.engine.objectFactory" value="spring" />
+	<Constant name="PojoToTemplate.Template.engine.className" value="eap_comps_datamapping_ftlTemplateEngine" />
+	
+	<Constant name="PojoToTemplate.Template.templateLoaderPath" value="conf/template" />
+	<Constant name="PojoToTemplate.Template.classicCompatible" value="true" />
+	
+	<Constant name="PojoToTemplate.Template.directives" value="codeTable:eap.comps.datamapping.renderer.CodeTableFtlDirective;" />
+	
+	<Constant name="PojoToTemplate.Template.default_encoding" value="UTF-8" />
+	<Constant name="PojoToTemplate.Template.localized_lookup" value=""/>
+	<Constant name="PojoToTemplate.Template.strict_syntax" value="" />
+	<Constant name="PojoToTemplate.Template.whitespace_stripping" value="" />
+	<Constant name="PojoToTemplate.Template.cache_storage" value="" />
+	<Constant name="PojoToTemplate.Template.template_update_delay" value="" />
+	<Constant name="PojoToTemplate.Template.auto_include" value="" />
+	<Constant name="PojoToTemplate.Template.auto_import" value="" />
+	<Constant name="PojoToTemplate.Template.tag_syntax" value="" />
+	
+	<Constant name="PojoToTemplate.Template.locale" value="" />
+	<Constant name="PojoToTemplate.Template.number_format" value="#.#" />
+	<Constant name="PojoToTemplate.Template.time_format" value="HH:mm:ss" />
+	<Constant name="PojoToTemplate.Template.date_format" value="yyyy-MM-dd" />
+	<Constant name="PojoToTemplate.Template.datetime_format" value="yyyy-MM-dd HH:mm:ss" />
+	<Constant name="PojoToTemplate.Template.time_zone" value="" />
+	<Constant name="PojoToTemplate.Template.classic_compatible" value="" />
+	<Constant name="PojoToTemplate.Template.template_exception_handler" value="ignore" />
+	<Constant name="PojoToTemplate.Template.arithmetic_engine" value="" />
+	<Constant name="PojoToTemplate.Template.object_wrapper" value="beans" />
+	<Constant name="PojoToTemplate.Template.boolean_format" value="" />
+	<Constant name="PojoToTemplate.Template.output_encoding" value="UTF-8" />
+	<Constant name="PojoToTemplate.Template.url_escaping_charset" value="" />
+	<Constant name="PojoToTemplate.Template.strict_bean_models" value="" />
+</DataMappings>

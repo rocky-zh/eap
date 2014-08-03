@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="Template">
+		<object-create-rule classname="eap.comps.datamapping.definition.TemplateDefinition"/>
+		<set-properties-rule />
+		<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/ValidatorRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/RendererRule.xml"/>
+		<set-next-rule methodname="setTemplate" />
+	</pattern>
+</digester-rules>

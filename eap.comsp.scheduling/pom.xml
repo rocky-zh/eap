@@ -1,0 +1,39 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>eap</groupId>
+		<artifactId>_eap</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<artifactId>_eap.comps.scheduling</artifactId>
+
+	<properties>
+		<springframeworkVersion>3.1.2.RELEASE</springframeworkVersion>
+		<springframeworkSecurityVersion>3.1.2.RELEASE</springframeworkSecurityVersion>
+		<springframeworkWebflowVersion>2.3.1.RELEASE</springframeworkWebflowVersion>
+		<springframeworkSocialVersion>1.1.0.M2</springframeworkSocialVersion>
+		<codehausCastorVersion>1.3.2</codehausCastorVersion>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>eap</groupId>
+			<artifactId>_eap.core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>eap</groupId>
+			<artifactId>_eap.um</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="Sheet">
+		<object-create-rule classname="eap.comps.datamapping.definition.SheetDefinition"/>
+		<set-properties-rule />
+		<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/CellFieldRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/CellFieldGroupRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/CellFieldSetRule.xml"/>
+		<set-next-rule methodname="addSheet" />
+	</pattern>
+</digester-rules>

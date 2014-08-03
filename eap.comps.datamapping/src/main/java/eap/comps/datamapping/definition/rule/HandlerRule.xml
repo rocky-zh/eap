@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="Handler">
+		<object-create-rule classname="eap.comps.datamapping.definition.HandlerDefinition" />
+		<set-properties-rule />
+		<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+		<set-next-rule methodname="addHandler" />	
+	</pattern>
+</digester-rules>

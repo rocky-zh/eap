@@ -1,0 +1,15 @@
+package p2
+
+rule "Rule 21"   
+    when
+        eval( 1==1 )
+    then
+        System.out.println( "Rule 21 Works" );
+end
+
+rule "Rule 22"   
+    when
+        eval( 1==1 )
+    then
+        System.out.println( "Rule 22 Works" );
+end

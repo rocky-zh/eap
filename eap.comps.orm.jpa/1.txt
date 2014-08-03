@@ -1,0 +1,5 @@
+http://webdev.apl.jhu.edu/~jcs/ejava-javaee/coursedocs/605-784-site/docs/content/html/hibernate-migration-orm.html
+https://github.com/spring-projects/spring-data-jpa/blob/master/src/test/resources/META-INF/orm.xml
+http://sishuok.com/forum/blogPost/list/7000.html
+http://stackoverflow.com/questions/9141416/inheritance-in-hql-with-spring-data-jpa
+http://docs.spring.io/spring-data/data-jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.named-queries

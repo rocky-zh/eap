@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://eap/schema/core"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	targetNamespace="http://eap/schema/core"
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://www.springframework.org/schema/beans" />
+	<xsd:element name="init">
+	</xsd:element>
+	<xsd:element name="propertyPlaceholder">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="beans:identifiedType">
+					<xsd:attribute name="algorithm" type="xsd:string" />
+					<xsd:attribute name="passwordSysPropertyName" type="xsd:string" />
+					<xsd:attribute name="locations" type="xsd:string" />
+					<xsd:attribute name="fileEncoding" type="xsd:string" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="dataSource">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="beans:identifiedType">
+					<xsd:attribute name="dataSourcePropsFormat" type="xsd:string" />
+					<xsd:attribute name="jdbcTemplateId" type="xsd:string" />
+					<xsd:attribute name="transactionManagerId" type="xsd:string" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="transaction">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="beans:identifiedType">
+					<xsd:attribute name="transactionManager" type="xsd:string" />
+					<xsd:attribute name="required" type="xsd:string" />
+					<xsd:attribute name="requiresNew" type="xsd:string" />
+					<xsd:attribute name="pointcut" type="xsd:string" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="componentScan">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="beans:identifiedType">
+					<xsd:attribute name="basePackage" type="xsd:string" />
+					<xsd:attribute name="isController" type="xsd:string" />
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema> 

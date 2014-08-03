@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataMappings>
+	<Constant name="Author" value="chiknin@gmail.com" />
+	
+	<Constant name="Env.basePath" value="conf/template" />
+	
+	<Constant name="Env.ParserDefinitionHandlerRegistry" value="PojoToText,TextToPojo,PojoToTemplate,XmlToPojo,ExcelToPojo,PojoToExcel,PojoToPdf,PojoToJson,JsonToPojo" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToText.className" value="eap.comps.datamapping.factory.object.PojoToTextMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.TextToPojo.className" value="eap.comps.datamapping.factory.object.TextToPojoMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToTemplate.className" value="eap.comps.datamapping.factory.object.PojoToTemplateMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.XmlToPojo.className" value="eap.comps.datamapping.factory.object.XmlToPojoMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.ExcelToPojo.className" value="eap.comps.datamapping.factory.object.ExcelToPojoMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToExcel.className" value="eap.comps.datamapping.factory.object.PojoToExcelMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToPdf.className" value="eap.comps.datamapping.factory.object.PojoToPdfMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.PojoToJson.className" value="eap.comps.datamapping.factory.object.PojoToJsonMapping" />
+	<Constant name="Env.ParserDefinitionHandlerRegistry.JsonToPojo.className" value="eap.comps.datamapping.factory.object.JsonToPojoMapping" />
+	
+	<Import resource="_DataMapping_PojoToTemplate.xml" />
+	<Import resource="_DataMapping_XmlToPojo.xml" />
+	
+	<Renderers>
+		<Renderer name="pad" className="eap.comps.datamapping.renderer.PadRenderer" style="align:left;padChar: ;" />
+		<Renderer name="replace" className="eap.comps.datamapping.renderer.ReplaceRenderer" style="mode:all;" />
+		<Renderer name="trim" className="eap.comps.datamapping.renderer.TrimRenderer" />
+		<Renderer name="numberFormat" className="eap.comps.datamapping.renderer.NumberFormatRenderer" />
+		<Renderer name="dateFormat" className="eap.comps.datamapping.renderer.DateFormatRenderer" style="pattern:yyyy-MM-dd;" />
+		<Renderer name="code" className="eap.comps.datamapping.renderer.CodeRenderer" style="mode:getNameByValue;" />
+	</Renderers>
+	<Validators>
+		<Validator name="regex" className="eap.comps.datamapping.validator.RegexValidator" />
+		<Validator name="xsd" className="eap.comps.datamapping.validator.XsdValidator" />
+	</Validators>
+	<Handlers>
+	</Handlers>
+	
+	<Import resource="DataMappings.xml" />
+</DataMappings>

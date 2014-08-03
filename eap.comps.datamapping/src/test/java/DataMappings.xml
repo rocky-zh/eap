@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DataMappings>
+	<DataMapping name="pojotopdf01">
+		<PojoToPdf title="电子保单" author="新华人寿保险有限公司">
+			<Section file="/test.ftl" renderType="html" >
+			</Section>
+			<!-- 
+			<Section file="/2.pdf" newPage="false">
+			</Section>
+			
+			<Section file="/1.pdf" renderType="formFill" newPage="true" >
+			</Section> -->
+		</PojoToPdf>
+	</DataMapping>
+</DataMappings>

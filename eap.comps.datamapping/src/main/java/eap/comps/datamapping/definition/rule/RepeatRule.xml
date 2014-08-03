@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<digester-rules>
+	<pattern value="Repeat">
+		<object-create-rule classname="eap.comps.datamapping.definition.RepeatDefinition"/>
+		<set-properties-rule />
+		<include path="eap/comps/datamapping/definition/rule/PropertyRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/TextFieldRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/TextFieldGroupRule.xml" />
+		<include path="eap/comps/datamapping/definition/rule/TextFieldSetRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/ValidatorRule.xml"/>
+		<include path="eap/comps/datamapping/definition/rule/HandlerRule.xml"/>
+		<set-next-rule methodname="setRepeat"/>
+	</pattern>
+</digester-rules>

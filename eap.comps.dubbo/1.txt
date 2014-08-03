@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:eapDubbo="http://eap/schema/comps/dubbo"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://eap/schema/comps/dubbo http://eap/schema/comps/dubbo.xsd">
+	
+	<dubbo:application name="${dubbo.application.name}" />
+	<dubbo:protocol name="dubbo" port="${dubbo.protocol.port}" />
+	<dubbo:registry  protocol="zookeeper" address="${dubbo.registry.address}" />
+	
+	<dubbo:provider timeout="${dubbo.provider.timeout}" />
+	<dubbo:consumer timeout="${dubbo.consumer.timeout}" />
+	
+	<dubbo:annotation package="cn.ncimall.open" />
+	
+	<dubbo:service interface="cn.ncimall.open.IDemoService" ref="demoService" />
+	<bean id="demoService" class="cn.ncimall.open.DemoServiceImpl" />
+	
+	<dubbo:reference id="demoServiceRemote" interface="cn.ncimall.open.IDemoService" />
+	
+</beans>
