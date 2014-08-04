@@ -1,4 +1,4 @@
-package eap.comsp.scheduling;
+package eap.comps.scheduling;
 
 import java.text.ParseException;
 import java.util.ArrayList;

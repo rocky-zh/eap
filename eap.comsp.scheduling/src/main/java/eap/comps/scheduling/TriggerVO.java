@@ -1,4 +1,4 @@
-package eap.comsp.scheduling;
+package eap.comps.scheduling;
 
 import java.util.Date;
 import java.util.HashMap;
