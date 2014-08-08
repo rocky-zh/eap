@@ -1,5 +1,5 @@
-package org.exolab.castor.xml.parsing.primitive.objects;
 /*
+
  * Copyright 2005 Philipp Erlacher
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,56 +14,69 @@ package org.exolab.castor.xml.parsing.primitive.objects;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+package org.exolab.castor.xml.parsing.primitive.objects;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import eap.util.StringUtil;
 
 /**
  * This class is used as a factory to get an instance of a class with a given
  * value.
- * 
  */
 public class PrimitiveObjectFactory {
 
-    static private Map<Class<?>, PrimitiveObject> typeHandlers = new HashMap<Class<?>, PrimitiveObject>();
+    private Map<Class<?>, Class<? extends PrimitiveObject>> typeHandlers = new HashMap<Class<?>, Class<? extends PrimitiveObject>>();
 
-    static {
-        typeHandlers.put(String.class, new PrimitiveString());
+    private final Log logger = LogFactory.getLog(this.getClass());
+    
+    private static PrimitiveObjectFactory primitiveObjectFactory;
+    
+    public static synchronized PrimitiveObjectFactory getInstance() {
+       if (primitiveObjectFactory == null) {
+          primitiveObjectFactory = new PrimitiveObjectFactory();
+       }
+       return primitiveObjectFactory;
+    }
+    
+    private PrimitiveObjectFactory() {
+        typeHandlers.put(String.class, PrimitiveString.class);
 
-        typeHandlers.put(Enum.class, new PrimitiveEnum());
+        typeHandlers.put(Enum.class, PrimitiveEnum.class);
 
-        typeHandlers.put(Integer.TYPE, new PrimitiveInteger());
-        typeHandlers.put(Integer.class, new PrimitiveInteger());
+        typeHandlers.put(Integer.TYPE, PrimitiveInteger.class);
+        typeHandlers.put(Integer.class, PrimitiveInteger.class);
 
-        typeHandlers.put(Boolean.TYPE, new PrimitiveBoolean());
-        typeHandlers.put(Boolean.class, new PrimitiveBoolean());
+        typeHandlers.put(Boolean.TYPE, PrimitiveBoolean.class);
+        typeHandlers.put(Boolean.class, PrimitiveBoolean.class);
 
-        typeHandlers.put(Double.TYPE, new PrimitiveDouble());
-        typeHandlers.put(Double.class, new PrimitiveDouble());
+        typeHandlers.put(Double.TYPE, PrimitiveDouble.class);
+        typeHandlers.put(Double.class, PrimitiveDouble.class);
 
-        typeHandlers.put(Long.TYPE, new PrimitiveLong());
-        typeHandlers.put(Long.class, new PrimitiveLong());
+        typeHandlers.put(Long.TYPE, PrimitiveLong.class);
+        typeHandlers.put(Long.class, PrimitiveLong.class);
 
-        typeHandlers.put(Character.TYPE, new PrimitiveChar());
-        typeHandlers.put(Character.class, new PrimitiveChar());
+        typeHandlers.put(Character.TYPE, PrimitiveChar.class);
+        typeHandlers.put(Character.class, PrimitiveChar.class);
 
-        typeHandlers.put(Short.TYPE, new PrimitiveShort());
-        typeHandlers.put(Short.class, new PrimitiveShort());
+        typeHandlers.put(Short.TYPE, PrimitiveShort.class);
+        typeHandlers.put(Short.class, PrimitiveShort.class);
 
-        typeHandlers.put(Float.TYPE, new PrimitiveFloat());
-        typeHandlers.put(Float.class, new PrimitiveFloat());
+        typeHandlers.put(Float.TYPE, PrimitiveFloat.class);
+        typeHandlers.put(Float.class, PrimitiveFloat.class);
 
-        typeHandlers.put(Byte.TYPE, new PrimitiveByte());
-        typeHandlers.put(Byte.class, new PrimitiveByte());
+        typeHandlers.put(Byte.TYPE, PrimitiveByte.class);
+        typeHandlers.put(Byte.class, PrimitiveByte.class);
 
-        typeHandlers.put(BigInteger.class, new PrimitiveBigInteger());
+        typeHandlers.put(BigInteger.class, PrimitiveBigInteger.class);
 
-        typeHandlers.put(BigDecimal.class, new PrimitiveBigDecimal());
+        typeHandlers.put(BigDecimal.class, PrimitiveBigDecimal.class);
     }
     
     /**
@@ -71,26 +84,23 @@ public class PrimitiveObjectFactory {
      * 
      * @return
      */
-    public static Object getObject(Class<?> type, String value) {
+    public Object getObject(Class<?> type, String value) {
 
         PrimitiveObject handler = lookupHandler(type);
         
         if (StringUtil.isBlank(value) && !type.isPrimitive()) { // by chiknin
         	return null;
         }
-        
+
         if (handler == null) {
             handler = getDefaultHandler();
         }
 
-        handler.setType(type);
-        if (type == String.class) {
-            handler.setValue(value);
-        } else {
-            handler.setValue(trimNumericValues(value));
+        if (type != String.class) {
+            value = trimNumericValues(value);
         }
 
-        return handler.getObject();
+        return handler.getObject(type, value);
     }
 
     /**
@@ -100,19 +110,33 @@ public class PrimitiveObjectFactory {
      * @param type
      * @return a handler to instantiate the given class
      */
-    private static PrimitiveObject lookupHandler(Class<?> type) {
+    private PrimitiveObject lookupHandler(Class<?> type) {
+       
+       PrimitiveObject instance = null;
 
         if (type == null) {
             return null;
         }
 
-        PrimitiveObject result = typeHandlers.get(type);
+        Class<? extends PrimitiveObject> result = typeHandlers.get(type);
 
         if (result == null) {
             result = typeHandlers.get(type.getSuperclass());
         }
 
-        return result;
+        if (result != null) {
+           try {
+              instance = result.newInstance();
+           } catch (InstantiationException e) {
+              this.logger.error("Problem instantiating an instance of " + result.getName());
+              e.printStackTrace();
+           } catch (IllegalAccessException e) {
+              this.logger.error("Problem accessing default constructor of " + result.getName());
+              e.printStackTrace();
+           }
+        }
+        
+        return instance;
     }
 
     /**
@@ -122,7 +146,7 @@ public class PrimitiveObjectFactory {
      *            Value to be trimmed, can be null
      * @return trimmed value or null
      */
-    private static String trimNumericValues(String value) {
+    private String trimNumericValues(String value) {
         if (value == null) {
             return null;
         }
@@ -135,7 +159,7 @@ public class PrimitiveObjectFactory {
      * 
      * @return primitiveObject Primitive
      */
-    private static PrimitiveObject getDefaultHandler() {
+    private PrimitiveObject getDefaultHandler() {
         return new PrimitiveObject();
     }
 
