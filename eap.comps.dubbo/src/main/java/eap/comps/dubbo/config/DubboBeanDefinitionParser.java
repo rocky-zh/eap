@@ -38,14 +38,6 @@ import eap.util.StringUtil;
  */
 public class DubboBeanDefinitionParser implements BeanDefinitionParser {
 	
-	private void setElAttrs(Element element, Map<String, Object> props) {
-		for (Map.Entry<String, Object> entry : props.entrySet()) {
-			if (entry.getValue() != null && entry.getValue().toString().length() > 0) {
-				element.setAttribute(entry.getKey(), entry.getValue().toString());
-			}
-		}
-	}
-
 	@Override
 	public BeanDefinition parse(Element element, ParserContext parserContext) {
 		Object source = parserContext.extractSource(element);
@@ -53,7 +45,7 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
 		
 		Document doc = DomUtil.newDocument();
 		Element appElement = doc.createElementNS("", "application"); // dubbo:application
-		setElAttrs(appElement, env.filterForPrefix("dubbo.application."));
+		DomUtil.setElAttrs(appElement, env.filterForPrefix("dubbo.application."));
 		if (!appElement.hasAttribute("name")) {
 			appElement.setAttribute("name", env.getProperty("app.name"));
 		}
@@ -67,24 +59,24 @@ public class DubboBeanDefinitionParser implements BeanDefinitionParser {
 				
 				doc = DomUtil.newDocument();
 				Element proElement = doc.createElementNS("", "protocol"); // dubbo:protocol
-				setElAttrs(proElement, BeanUtil.filterForPrefix(registrysProps, key + "."));
+				DomUtil.setElAttrs(proElement, BeanUtil.filterForPrefix(registrysProps, key + "."));
 				new com.alibaba.dubbo.config.spring.schema.DubboBeanDefinitionParser(ProtocolConfig.class, true).parse(proElement, parserContext).getPropertyValues().removePropertyValue("parameters");
 			}
 		}
 		
 		doc = DomUtil.newDocument();
 		Element registryElement = doc.createElementNS("", "registry"); // dubbo:registry
-		setElAttrs(registryElement, env.filterForPrefix("dubbo.registry."));
+		DomUtil.setElAttrs(registryElement, env.filterForPrefix("dubbo.registry."));
 		new com.alibaba.dubbo.config.spring.schema.DubboBeanDefinitionParser(RegistryConfig.class, true).parse(registryElement, parserContext).getPropertyValues().removePropertyValue("parameters");
 		
 		doc = DomUtil.newDocument();
 		Element providerElement = doc.createElementNS("", "provider"); // <dubbo:provider
-		setElAttrs(providerElement, env.filterForPrefix("dubbo.provider."));
+		DomUtil.setElAttrs(providerElement, env.filterForPrefix("dubbo.provider."));
 		new com.alibaba.dubbo.config.spring.schema.DubboBeanDefinitionParser(ProviderConfig.class, true).parse(providerElement, parserContext).getPropertyValues().removePropertyValue("parameters");
 		
 		doc = DomUtil.newDocument();
 		Element consumerElement = doc.createElementNS("", "consumer"); // dubbo:consumer
-		setElAttrs(consumerElement, env.filterForPrefix("dubbo.consumer."));
+		DomUtil.setElAttrs(consumerElement, env.filterForPrefix("dubbo.consumer."));
 		new com.alibaba.dubbo.config.spring.schema.DubboBeanDefinitionParser(ConsumerConfig.class, true).parse(consumerElement, parserContext).getPropertyValues().removePropertyValue("parameters");
 		
 		String pgk = env.getProperty("dubbo.annotation.package");
