@@ -77,7 +77,7 @@ public class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinition
 //		def.getPropertyValues().add("cacheManager",
 //				new RuntimeBeanReference(CacheNamespaceHandler.extractCacheManager(element)));
 		def.getPropertyValues().add("cacheManager",
-				ReflectUtil.invokeMethod(CacheNamespaceHandler.class, "extractCacheManager", new Object[] {element}));
+				new RuntimeBeanReference((String) ReflectUtil.invokeMethod(CacheNamespaceHandler.class, "extractCacheManager", new Class<?>[] {Element.class}, new Object[] {element})));
 	}
 
 	/**
@@ -99,7 +99,7 @@ public class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinition
 			def.setFactoryMethodName("aspectOf");
 			parseCacheManagerProperty(element, def);
 //			CacheNamespaceHandler.parseKeyGenerator(element, def);
-			ReflectUtil.invokeMethod(CacheNamespaceHandler.class, "parseKeyGenerator", new Object[] {element, def});
+			ReflectUtil.invokeMethod(CacheNamespaceHandler.class, "parseKeyGenerator", new Class<?>[] {Element.class, BeanDefinition.class}, new Object[] {element, def});
 			parserContext.registerBeanComponent(new BeanComponentDefinition(def, CACHE_ASPECT_BEAN_NAME));
 		}
 	}
@@ -128,7 +128,7 @@ public class AnnotationDrivenCacheBeanDefinitionParser implements BeanDefinition
 				interceptorDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 				parseCacheManagerProperty(element, interceptorDef);
 //				CacheNamespaceHandler.parseKeyGenerator(element, interceptorDef);
-				ReflectUtil.invokeMethod(CacheNamespaceHandler.class, "parseKeyGenerator", new Object[] {element, interceptorDef});
+				ReflectUtil.invokeMethod(CacheNamespaceHandler.class, "parseKeyGenerator", new Class<?>[] {Element.class, BeanDefinition.class}, new Object[] {element, interceptorDef});
 				interceptorDef.getPropertyValues().add("cacheOperationSources", new RuntimeBeanReference(sourceName));
 				String interceptorName = parserContext.getReaderContext().registerWithGeneratedName(interceptorDef);
 
