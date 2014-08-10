@@ -20,6 +20,7 @@ public class NamespaceHandler extends NamespaceHandlerSupport {
 
 	@Override
 	public void init() {
-		registerBeanDefinitionParser("cacheManager", new CacheManagerBeanDefinitionParser());
+		registerBeanDefinitionParser("memcache", new MemcacheBeanDefinitionParser());
+		registerBeanDefinitionParser("redis", new RedisBeanDefinitionParser());
 	}
 }
