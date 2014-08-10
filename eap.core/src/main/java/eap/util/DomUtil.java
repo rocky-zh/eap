@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 /**
  * <p> Title: </p>
@@ -55,5 +56,13 @@ public class DomUtil {
 	
 	public static Document newDocument() {
 		return getParser().newDocument();
+	}
+	
+	public static void setElAttrs(Element element, Map<String, Object> props) {
+		for (Map.Entry<String, Object> entry : props.entrySet()) {
+			if (entry.getValue() != null && entry.getValue().toString().length() > 0) {
+				element.setAttribute(entry.getKey(), entry.getValue().toString());
+			}
+		}
 	}
 }
