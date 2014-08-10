@@ -8,9 +8,11 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -334,5 +336,31 @@ public class BeanUtil {
 		}
 		
 		return descMap;
+	}
+	
+	public static <T> Set<T> toSet(T[] array) {
+		if (array == null) {
+			return null;
+		}
+		
+		Set<T> set = new LinkedHashSet<T>();
+		for (T value : array) {
+			set.add(value);
+		}
+		
+		return set;
+	}
+	
+	public static <T> List<T> toList(T[] array) {
+		if (array == null) {
+			return null;
+		}
+		
+		List<T> list = new ArrayList<T>();
+		for (T value : array) {
+			list.add(value);
+		}
+		
+		return list;
 	}
 }
