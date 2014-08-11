@@ -112,6 +112,13 @@ public class StringUtil extends StringUtils {
 		
 		return defaultValue;
 	}
+	public static String defaultIfBlank(String str, String defaultValue) {
+		if (isNotBlank(str)) {
+			return str;
+		}
+		
+		return defaultValue;
+	}
 	
 	public static String mapUnderscoreToCamelCase(String str) {
 		char c = '_';
@@ -325,6 +332,7 @@ public class StringUtil extends StringUtils {
 //		System.out.println(s);
 //		System.out.println(toInteger("595213"));
 		
-		System.out.println(RandomStringUtils.random(32, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"));
+//		System.out.println(RandomStringUtils.random(32, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()"));
+		System.out.println(RandomStringUtils.random(32, "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"));
 	}
 }
