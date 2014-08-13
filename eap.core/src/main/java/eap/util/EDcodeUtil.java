@@ -213,6 +213,7 @@ public class EDcodeUtil {
 	}
 	public static String aesEncodeAsHex(String data, String key) {
 		if (data == null) {return null;}
+		else if (data.length() == 0) { return "";}
 		return hexEncode(aes(utf8Encode(data), utf8Encode(key), 128, Cipher.ENCRYPT_MODE));
 	}
 	public static String aesEncodeAsBase64(String data, String key) {
@@ -226,10 +227,12 @@ public class EDcodeUtil {
 	}
 	public static String aesDecodeForHexAsString(String dataHex, String key) {
 		if (dataHex == null) {return null;}
+		else if (dataHex.length() == 0) { return "";}
 		return utf8Decode(aes(hexDecode(dataHex), utf8Encode(key), 128, Cipher.DECRYPT_MODE));
 	}
 	public static String aesDecodeForBase64AsString(String dataBase64, String key) {
 		if (dataBase64 == null) {return null;}
+		else if (dataBase64.length() == 0) { return "";}
 		return utf8Decode(aes(Base64.decodeBase64(utf8Encode(dataBase64)), utf8Encode(key), 128, Cipher.DECRYPT_MODE));
 	}
 	private static byte[] aes(byte[] data, byte[] key, int keyLen, int opMode) {
@@ -554,14 +557,15 @@ public class EDcodeUtil {
 //		
 //		System.out.println(uuids.size());
 		
-		String s = "中国";
+		String s = "20000002A24011410000121407901826523chiknin@gmail.com";
+		System.out.println(md5Encode(s, "UTF-8"));
 //		
 //		
 //		System.out.println(JavaScriptUtils.javaScriptEscape(s));
 		
-		String r1 = aesEncodeAsBase64(s, "123456789");
+		String r1 = "XWhIsop+x+znlkDOq/GGTg=="; // aesEncodeAsBase64(s, "123456789");
 		System.out.println(r1);
-		System.out.println(aesDecodeForBase64AsString(r1, "123456789"));
+		System.out.println(aesDecodeForBase64AsString(r1, "0123456789ABCDEF"));
 		
 //		String r2 = desEncodeAsBase64(s, "12345678");
 //		System.out.println(r2);
