@@ -36,6 +36,16 @@ public class NumberUtil {
 		return num.divide(new BigDecimal(10000), 0, BigDecimal.ROUND_HALF_UP);
 	}
 	
+	public static Double divide(Double num, Integer dividend) {
+		if (num == null) {
+			return null;
+		}
+		if (num == 0) {
+			return 0D;
+		}
+		
+		return new BigDecimal(num).divide(new BigDecimal(dividend), 2, BigDecimal.ROUND_HALF_UP).doubleValue();
+	}
 	public static Double divide100(Double num) {
 		if (num == null) {
 			return null;
